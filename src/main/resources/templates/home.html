@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h2>WOoo</h2>
+
+
+    <form method="post" action="/add">
+        <div>
+            <input type="text" name="title" placeholder="Todo">
+        </div>
+        <div>
+            <input type="text" name="description" placeholder="description">
+        </div>
+        <button type="submit">add</button>
+    </form>
+    <ul>
+        <li th:each="todo : ${todos}" th:id="'todo-' + ${todo.getId()}">
+            <strong class="todo-title" th:text="${todo.getTitle()}"></strong>
+            <span class="todo-description" th:text="${todo.getDescription()}"></span>
+            <button th:onclick="'editTodo(' + ${todo.getId()} + ')'" >수정</button>
+            <form method="post" th:action="@{delete/{id}(id=${todo.getId()})}">
+                <button type="submit">delete</button>
+            </form>
+        </li>
+    </ul>
+</body>
+
+<script>
+    // JavaScript 함수
+    function editTodo(id) {
+        // 제목과 설명을 동적으로 변경
+        const todoItem = document.getElementById(`todo-${id}`);
+        const title = todoItem.querySelector(".todo-title").textContent;
+        const description = todoItem.querySelector(".todo-description").textContent;
+
+        // Input 필드로 변경
+        todoItem.innerHTML = `
+                <form method="post" action="/update/${id}">
+                    <input type="text" name="title" value="${title}" />
+                    <input type="text" name="description" value="${description}" />
+                    <button type="submit">확인</button>
+                </form>
+            `;
+    }
+</script>
+</html>
