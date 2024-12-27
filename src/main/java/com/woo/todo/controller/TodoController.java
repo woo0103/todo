@@ -1,6 +1,7 @@
-package com.woo.todo;
+package com.woo.todo.controller;
 
 import com.woo.todo.domain.Todo;
+import com.woo.todo.service.TodoJpaService;
 import com.woo.todo.service.TodoMemoryService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TodoController {
 
-    private final TodoMemoryService service;
+    private final TodoJpaService service;
 
     @GetMapping("/")
     public String home(Model model) {
