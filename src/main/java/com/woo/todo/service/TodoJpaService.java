@@ -33,6 +33,13 @@ public class TodoJpaService {
         repository.update(id, title, description);
     }
 
+    // completed 체크
+    @Transactional
+    public void completedChecked(Long id) {
+        repository.checked(id);
+
+    }
+
     //삭제
     @Transactional
     public void removeTodo(Long id) {

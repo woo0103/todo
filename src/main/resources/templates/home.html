@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <style>
+        .text-strikethrough {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 <body>
     <h2>WOoo</h2>
@@ -19,12 +24,19 @@
     </form>
     <ul>
         <li th:each="todo : ${todos}" th:id="'todo-' + ${todo.getId()}">
-            <strong class="todo-title" th:text="${todo.getTitle()}"></strong>
-            <span class="todo-description" th:text="${todo.getDescription()}"></span>
+            <strong class="todo-title" th:text="${todo.getTitle()}"
+                    th:classappend="${todo.isCompleted()} ? 'text-strikethrough' : ''"></strong>
+            <span class="todo-description" th:text="${todo.getDescription()}"
+                  th:classappend="${todo.isCompleted()} ? 'text-strikethrough' : ''"></span>
             <button th:onclick="'editTodo(' + ${todo.getId()} + ')'" >수정</button>
-            <form method="post" th:action="@{delete/{id}(id=${todo.getId()})}">
+            <form method="post" th:action="@{delete/{id}(id=${todo.getId()})}" style="display: inline;">
                 <button type="submit">delete</button>
             </form>
+            <form method="post" th:action="@{checked/{id}(id=${todo.getId()})}" style="display: inline;">
+                <button type="submit" th:if="${todo.isCompleted()}">X</button>
+                <button type="submit" th:unless="${todo.isCompleted()}">O</button>
+            </form>
+
         </li>
     </ul>
 </body>

@@ -43,4 +43,10 @@ public class TodoController {
         service.updateTodo(id, title, description);
         return "redirect:/";
     }
+
+    @PostMapping("/checked/{id}")
+    public String checked(@PathVariable("id") Long id) {
+        service.completedChecked(id);
+        return "redirect:/";
+    }
 }

@@ -36,6 +36,12 @@ public class TodoJpaRepository {
 
     }
 
+    // 함, 안함 전환
+    public void checked(Long id) {
+        Todo findTodo = em.find(Todo.class, id);
+        findTodo.setCompleted(!findTodo.isCompleted());
+    }
+
     //삭제
     public void delete(Long id) {
         Todo deleteTodo = em.find(Todo.class, id);
