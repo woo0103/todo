@@ -36,7 +36,7 @@ public class TodoJpaRepository {
 
     }
 
-    // 함, 안함 전환
+    // O, X 전환
     public void checked(Long id) {
         Todo findTodo = em.find(Todo.class, id);
         findTodo.setCompleted(!findTodo.isCompleted());
