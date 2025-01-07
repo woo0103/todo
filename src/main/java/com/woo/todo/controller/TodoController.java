@@ -14,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/todo")
 public class TodoController {
 
     private final TodoJpaService service;
