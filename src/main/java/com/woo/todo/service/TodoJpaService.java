@@ -33,7 +33,7 @@ public class TodoJpaService {
         repository.update(id, title, description);
     }
 
-    // completed 체크
+    // completed 값 변경
     // O, X 전환
     @Transactional
     public void completedChecked(Long id) {

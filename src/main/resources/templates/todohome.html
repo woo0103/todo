@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>todoHome</title>
+    <style>
+        /*가운데 줄 그음*/
+        .text-strikethrough {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <h2>WOoo</h2>
+
+
+    <form method="post" action="/todo/add">
+<!--     title 입력받음-->
+        <div>
+            <input type="text" name="title" placeholder="Todo">
+        </div>
+        <!--     description 입력받음-->
+        <div>
+            <input type="text" name="description" placeholder="description">
+        </div>
+        <button type="submit">add</button>
+    </form>
+<!--    전제 todo 출력-->
+    <ul>
+<!--        th:each 로 반복 출력-->
+        <li th:each="todo : ${todos}" th:id="'todo-' + ${todo.getId()()}">
+
+<!--            completed 값에 따라 글자 가운데에 줄 그음-->
+            <strong class="todo-title" th:text="${todo.getTitle()}"
+                    th:classappend="${todo.isCompleted()} ? 'text-strikethrough' : ''"></strong>
+            <span class="todo-description" th:text="${todo.getDescription()}"
+                  th:classappend="${todo.isCompleted()} ? 'text-strikethrough' : ''"></span>
+
+<!--            수정 버튼 누르면 텍스트 상자로 변경해서 값 입력 가능하게 함-->
+            <button th:onclick="'editTodo(' + ${todo.getId()} + ')'" >수정</button>
+
+<!--            삭제 버튼, 인라인으로 처리-->
+            <form method="post" th:action="@{todo/delete/{id}(id=${todo.getId()})}" style="display: inline;">
+                <button type="submit">delete</button>
+            </form>
+
+<!--            O, X 버튼, completed 값 변경함, 인라인으로 처리-->
+            <form method="post" th:action="@{/todo/checked/{id}(id=${todo.getId()})}" style="display: inline;">
+                <button type="submit" th:if="${todo.isCompleted()}">X</button>
+                <button type="submit" th:unless="${todo.isCompleted()}">O</button>
+            </form>
+
+        </li>
+    </ul>
+    <form method="post" action="/todo/clear">
+        <button type="submit">전체 삭제</button>
+    </form>
+
+</body>
+
+
+<script>
+    // JavaScript 함수
+    function editTodo(id) {
+        // 제목과 설명을 동적으로 변경
+        const todoItem = document.getElementById(`todo-${id}`);
+        const title = todoItem.querySelector(".todo-title").textContent;
+        const description = todoItem.querySelector(".todo-description").textContent;
+
+        // Input 필드로 변경
+        todoItem.innerHTML = `
+                <form method="post" action="todo/update/${id}">
+                    <input type="text" name="title" value="${title}" />
+                    <input type="text" name="description" value="${description}" />
+                    <button type="submit">확인</button>
+                </form>
+            `;
+    }
+</script>
+</html>

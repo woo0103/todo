@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>addForm</title>
+</head>
+<body>
+    <form method="post" action="/member/add">
+        <input type="text" th:field="${member.loginId}" placeholder="아이디를 입력하세요">
+        <input type="text" th:field="${member.password}" placeholder="비밀번호를 입력하세요">
+        <input type="text" th:field="${member.name}" placeholder="사용자 이름을 입력하세요">
+        <button type="submit">가입</button>
+    </form>
+</body>
+</html>

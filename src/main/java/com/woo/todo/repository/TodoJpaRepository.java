@@ -36,6 +36,7 @@ public class TodoJpaRepository {
 
     }
 
+    // completed 값 변경
     // O, X 전환
     public void checked(Long id) {
         Todo findTodo = em.find(Todo.class, id);
@@ -57,8 +58,7 @@ public class TodoJpaRepository {
 
     //전체 삭제
     public void clear() {
-        em.createQuery("delete t from Todo t", Todo.class);
+        em.createQuery("delete from Todo").executeUpdate();
     }
-
 
 }
