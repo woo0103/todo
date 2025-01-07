@@ -34,6 +34,7 @@ public class TodoJpaService {
     }
 
     // completed 체크
+    // O, X 전환
     @Transactional
     public void completedChecked(Long id) {
         repository.checked(id);

@@ -19,6 +19,8 @@ public class TodoController {
 
     private final TodoJpaService service;
 
+    // 홈 화면
+    // 전체 todoList 출력
     @GetMapping("/")
     public String home(Model model) {
         List<Todo> todos = service.todoList();
@@ -26,6 +28,7 @@ public class TodoController {
         return "home";
     }
 
+    // todo 추가
     @PostMapping("/add")
     public String add(@RequestParam("title") String title, @RequestParam("description") String description) {
         Todo todo = new Todo(title, description);
@@ -33,18 +36,21 @@ public class TodoController {
         return "redirect:/";
     }
 
+    // todo 1개 삭제
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         service.removeTodo(id);
         return "redirect:/";
     }
 
+    // todo 내용 수정
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Long id, @RequestParam("title") String title, @RequestParam("description") String description) {
         service.updateTodo(id, title, description);
         return "redirect:/";
     }
 
+    // O,X 전환
     @PostMapping("/checked/{id}")
     public String checked(@PathVariable("id") Long id) {
         service.completedChecked(id);
