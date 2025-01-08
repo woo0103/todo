@@ -6,9 +6,20 @@
 </head>
 <body>
     <form method="post" action="/member/add">
-        <input type="text" th:field="${member.loginId}" placeholder="아이디를 입력하세요">
-        <input type="text" th:field="${member.password}" placeholder="비밀번호를 입력하세요">
-        <input type="text" th:field="${member.name}" placeholder="사용자 이름을 입력하세요">
+        <div>
+            <label for="loginId">로그인 ID</label>
+            <input type="text" id="loginId" th:field="${member.loginId}" placeholder="아이디를 입력하세요">
+        </div>
+        <div>
+            <label for="password">비밀번호</label>
+            <input type="text" id="password" th:field="${member.password}" placeholder="비밀번호를 입력하세요">
+        </div>
+        <div>
+            <label for="name">사용자 이름</label>
+            <input type="text" id="name" th:field="${member.name}" placeholder="사용자 이름을 입력하세요">
+        </div>
+
+
         <button type="submit">가입</button>
     </form>
 </body>

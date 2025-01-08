@@ -28,7 +28,7 @@
 <!--    전제 todo 출력-->
     <ul>
 <!--        th:each 로 반복 출력-->
-        <li th:each="todo : ${todos}" th:id="'todo-' + ${todo.getId()()}">
+        <li th:each="todo : ${todos}" th:id="'todo-' + ${todo.getId()}">
 
 <!--            completed 값에 따라 글자 가운데에 줄 그음-->
             <strong class="todo-title" th:text="${todo.getTitle()}"
