@@ -26,7 +26,11 @@ public class MemberJpaRepository {
 
     // 로그인id로 조회
     public Member findByLoginId(String loginId) {
-        return em.find(Member.class, loginId);
+        String jpql = "select m from Member m where m.loginId = :loginId";
+        List<Member> loginMember = em.createQuery(jpql, Member.class)
+                .setParameter("loginId", loginId)
+                .getResultList();
+        return loginMember.isEmpty() ? null : loginMember.get(0);
     }
 
     // 전체 Member 조회
