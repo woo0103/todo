@@ -24,7 +24,7 @@ public class MemberController {
     public String addForm(@ModelAttribute Member member, Model model) {
         log.info("addForm");
         model.addAttribute(member);
-        return "addForm";
+        return "member/addForm";
     }
 
     @PostMapping("/add")

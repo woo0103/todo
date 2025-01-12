@@ -20,7 +20,7 @@ public class HomeController {
         // 세션에 로그인 멤버에 대한 정보가 없으면 홈으로
         if (loginMember == null) {
             log.info("HomeController: 로그인 멤버 없음");
-            return "home";
+            return "home/home";
         }
 
         // 세션에 로그인 멤버에 대한 정보가 있으면 todo로

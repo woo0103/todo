@@ -37,7 +37,7 @@ public class TodoController {
         List<Todoo> todoos = service.todoList(loginMember);
         model.addAttribute("todoos", todoos);
         log.info("todoohome");
-        return "todoohHome";
+        return "todoo/todoohHome";
     }
 
     // todo 추가
