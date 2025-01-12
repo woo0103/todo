@@ -1,29 +1,31 @@
-package com.woo.todo.domain;
+package com.woo.todoo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Todo {
-    public Todo() {
+public class Todoo {
+    public Todoo() {
     }
 
     @Id
     @GeneratedValue
+    @Column(name = "TODO_ID")
     private Long id;
 
     private String title;
     private String description;
     private boolean completed = false;
 
-    public Todo(String title, String description) {
+    // 멤버랑 다대일 연관관계
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
+    public Todoo(String title, String description) {
         this.title = title;
         this.description = description;
     }

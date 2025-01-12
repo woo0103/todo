@@ -1,8 +1,7 @@
-package com.woo.todo.repository;
+package com.woo.todoo.repository;
 
-import com.woo.todo.domain.Member;
+import com.woo.todoo.domain.Member;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

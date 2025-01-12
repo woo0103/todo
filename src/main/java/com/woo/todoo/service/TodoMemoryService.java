@@ -1,7 +1,7 @@
-package com.woo.todo.service;
+package com.woo.todoo.service;
 
-import com.woo.todo.domain.Todo;
-import com.woo.todo.repository.TodoMemoryRepository;
+import com.woo.todoo.domain.Todoo;
+import com.woo.todoo.repository.TodoMemoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +14,12 @@ public class TodoMemoryService {
     private final TodoMemoryRepository repository;
 
     //저장
-    public Long addTodo(Todo todo) {
+    public Long addTodo(Todoo todo) {
         return repository.save(todo);
     }
 
     //조회
-    public Todo findTodo(Long id) {
+    public Todoo findTodo(Long id) {
         return repository.find(id);
     }
 
@@ -34,7 +34,7 @@ public class TodoMemoryService {
     }
 
     //전제 조회
-    public List<Todo> todoList() {
+    public List<Todoo> todoList() {
         return repository.findAll();
     }
 

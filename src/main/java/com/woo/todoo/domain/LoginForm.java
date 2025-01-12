@@ -1,13 +1,14 @@
-package com.woo.todo.domain;
+package com.woo.todoo.domain;
 
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
-// 로그인할때만 사용하는 클래스
+@ToString
+// 로그인할때 필요한 정보만 가지고 있는 클래스임
 public class LoginForm {
     private String loginId;
     private String password;

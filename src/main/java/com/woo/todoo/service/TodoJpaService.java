@@ -1,8 +1,8 @@
-package com.woo.todo.service;
+package com.woo.todoo.service;
 
-import com.woo.todo.domain.Todo;
-import com.woo.todo.repository.TodoJpaRepository;
-import com.woo.todo.repository.TodoMemoryRepository;
+import com.woo.todoo.domain.Member;
+import com.woo.todoo.domain.Todoo;
+import com.woo.todoo.repository.TodoJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,12 +18,12 @@ public class TodoJpaService {
 
     //저장
     @Transactional
-    public Long addTodo(Todo todo) {
-        return repository.save(todo);
+    public Long addTodo(Todoo todo, Member member) {
+        return repository.save(todo, member);
     }
 
     //조회
-    public Todo findTodo(Long id) {
+    public Todoo findTodo(Long id) {
         return repository.find(id);
     }
 
@@ -48,13 +48,13 @@ public class TodoJpaService {
     }
 
     //전제 조회
-    public List<Todo> todoList() {
-        return repository.findAll();
+    public List<Todoo> todoList(Member member) {
+        return repository.findAll(member);
     }
 
     //전체 삭제
     @Transactional
-    public void removeAll() {
-        repository.clear();
+    public void removeAll(Member member) {
+        repository.clear(member);
     }
 }

@@ -1,6 +1,6 @@
-package com.woo.todo.controller;
+package com.woo.todoo.controller;
 
-import com.woo.todo.domain.Member;
+import com.woo.todoo.domain.Member;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +25,7 @@ public class HomeController {
 
         // 세션에 로그인 멤버에 대한 정보가 있으면 todo로
         log.info("HomeController: 로그인 멤버 있음");
-        return "redirect:/todo";
+        return "redirect:/todoo";
     }
 }
+

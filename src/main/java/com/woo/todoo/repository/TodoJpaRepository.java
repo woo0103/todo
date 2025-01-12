@@ -1,13 +1,12 @@
-package com.woo.todo.repository;
+package com.woo.todoo.repository;
 
-import com.woo.todo.domain.Todo;
-import jakarta.annotation.PostConstruct;
+import com.woo.todoo.domain.Member;
+import com.woo.todoo.domain.Todoo;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -17,20 +16,23 @@ public class TodoJpaRepository {
 
     private final EntityManager em;
 
-    public Long save(Todo todo) {
+    // 저장
+    // member랑 todo연결
+    public Long save(Todoo todo, Member member) {
+        todo.setMember(member);
         em.persist(todo);
         return todo.getId();
     }
 
     //조회
-    public Todo find(Long id) {
-        return em.find(Todo.class, id);
+    public Todoo find(Long id) {
+        return em.find(Todoo.class, id);
     }
 
     //수정
     public void update(Long id, String title, String description) {
         log.info("id={}", id);
-        Todo findTodo = em.find(Todo.class, id);
+        Todoo findTodo = em.find(Todoo.class, id);
         findTodo.setTitle(title);
         findTodo.setDescription(description);
 
@@ -39,26 +41,29 @@ public class TodoJpaRepository {
     // completed 값 변경
     // O, X 전환
     public void checked(Long id) {
-        Todo findTodo = em.find(Todo.class, id);
+        Todoo findTodo = em.find(Todoo.class, id);
         findTodo.setCompleted(!findTodo.isCompleted());
     }
 
     //삭제
     public void delete(Long id) {
-        Todo deleteTodo = em.find(Todo.class, id);
+        Todoo deleteTodo = em.find(Todoo.class, id);
         em.remove(deleteTodo);
     }
 
     //전제 조회
-    public List<Todo> findAll() {
-        return em.createQuery("select t from Todo t", Todo.class)
+    public List<Todoo> findAll(Member member) {
+        return em.createQuery("select t from Todoo t where t.member = :member", Todoo.class)
+                .setParameter("member", member)
                 .getResultList();
 
     }
 
-    //전체 삭제
-    public void clear() {
-        em.createQuery("delete from Todo").executeUpdate();
+    // 멤버가 작성한 todo 전체 삭제
+    public void clear(Member member) {
+        em.createQuery("delete from Todoo t where t.member = :member")
+                .setParameter("member", member)
+                .executeUpdate();
     }
 
 }

@@ -1,6 +1,6 @@
-package com.woo.todo.repository;
+package com.woo.todoo.repository;
 
-import com.woo.todo.domain.Member;
+import com.woo.todoo.domain.Member;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

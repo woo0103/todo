@@ -1,7 +1,7 @@
-package com.woo.todo.controller;
+package com.woo.todoo.controller;
 
-import com.woo.todo.domain.Member;
-import com.woo.todo.service.MemberJpaService;
+import com.woo.todoo.domain.Member;
+import com.woo.todoo.service.MemberJpaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

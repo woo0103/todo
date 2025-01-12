@@ -1,7 +1,7 @@
-package com.woo.todo.service;
+package com.woo.todoo.service;
 
-import com.woo.todo.domain.Member;
-import com.woo.todo.repository.MemberJpaRepository;
+import com.woo.todoo.domain.Member;
+import com.woo.todoo.repository.MemberJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

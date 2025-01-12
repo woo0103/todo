@@ -1,5 +1,6 @@
-package com.woo.todo.domain;
+package com.woo.todoo.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -15,6 +16,7 @@ public class Member {
 
     @Id
     @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
     // 회원 이름

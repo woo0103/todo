@@ -1,8 +1,8 @@
-package com.woo.todo.controller;
+package com.woo.todoo.controller;
 
-import com.woo.todo.domain.LoginForm;
-import com.woo.todo.domain.Member;
-import com.woo.todo.service.LoginService;
+import com.woo.todoo.domain.LoginForm;
+import com.woo.todoo.domain.Member;
+import com.woo.todoo.service.LoginService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.print.attribute.standard.PresentationDirection;
 
 @Controller
 @Slf4j
